@@ -12,6 +12,7 @@ hbar = float(input("Enter hbar value:"))
 m = float(input("Enter the mass:"))
 h = L / (N + 1)
 
+
 """Operator"""
 
 D2 = second_derivative_matrix(N, h)
