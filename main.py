@@ -1,7 +1,7 @@
 import numpy as np
 from src.hamiltonian import infinite_square_well_hamiltonian
 from src.operators import second_derivative_matrix
-from src.solver import solve_eigenstates
+from src.solver import solve_eigenstates, normalize_wavefunction
 from src.analytic import infinite_square_well_energy, relative_error
 
 """Inputs For the System"""
@@ -23,6 +23,14 @@ H = infinite_square_well_hamiltonian(D2,hbar,m)
 """Eigenstates"""
 
 energies, wavefunctions = solve_eigenstates(H)
+
+"""Normalization"""
+
+
+wavefunctions = normalize_wavefunction(wavefunctions, h)
+check_norm = np.sum(wavefunctions[0]**2) * h
+
+print(f"Normalization check for first wavefunction: {check_norm:.6f}")
 
 """Energy Comparison"""
 
