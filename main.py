@@ -3,6 +3,7 @@ from src.hamiltonian import infinite_square_well_hamiltonian
 from src.operators import second_derivative_matrix
 from src.solver import solve_eigenstates, normalize_wavefunction
 from src.analytic import infinite_square_well_energy, relative_error
+from src.plots import plot_wavefunctions
 
 """Inputs For the System"""
 
@@ -32,6 +33,11 @@ wavefunctions = normalize_wavefunction(wavefunctions, h)
 check_norm = np.sum(wavefunctions[0]**2) * h
 
 print(f"Normalization check for first wavefunction: {check_norm:.6f}")
+
+"""Wavefunction vs x Plot"""
+
+x = np.linspace(h, L - h, N)
+plot_wavefunctions(x, wavefunctions, num_states = 5)
 
 """Energy Comparison"""
 
