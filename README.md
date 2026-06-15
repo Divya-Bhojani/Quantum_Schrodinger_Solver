@@ -1,5 +1,8 @@
 # Quantum Mechanics Simulation: Numerical Solution of the Schrödinger Equation
 
+> Status: Active work in progress.
+> Current stage: Infinite square well solver completed. Harmonic oscillator and finite well extensions in progress.
+> 
 This project numerically solves the one-dimensional time-independent Schrödinger equation using finite difference methods and matrix eigenvalue solvers in Python.
 
 ## Project Goals
