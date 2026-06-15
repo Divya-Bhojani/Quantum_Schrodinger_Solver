@@ -5,13 +5,15 @@ from src.operators import second_derivative_matrix
 from src.solver import solve_eigenstates, normalize_wavefunction
 from src.analytic import infinite_square_well_energy, relative_error
 from src.plots import plot_wavefunctions
+from src.potentials import harmonic_oscillator_potential
 
 """Inputs For the System"""
 
-N = int(input("Enter the number of interior grid points:"))
-L = float(input("Enter the length of the well:"))
+N = int(input("Enter the Number of Interior Grid Points:"))
+L = float(input("Enter the Length of the Well:"))
 hbar = float(input("Enter hbar value:"))
-m = float(input("Enter the mass:"))
+m = float(input("Enter the Mass:"))
+omega = float(input("Enter the Angular Frequency:"))
 h = L / (N + 1)
 
 
