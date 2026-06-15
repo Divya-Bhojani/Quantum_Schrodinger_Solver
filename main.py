@@ -1,6 +1,6 @@
 import numpy as np
 import os
-from src.hamiltonian import infinite_square_well_hamiltonian
+from src.hamiltonian import infinite_square_well_hamiltonian, harmonic_oscillator_hamiltonian
 from src.operators import second_derivative_matrix
 from src.solver import solve_eigenstates, normalize_wavefunction
 from src.analytic import infinite_square_well_energy, relative_error
@@ -71,3 +71,26 @@ print(H)
 print("First 5 Numerical Energies:")
 for i in range(5):
     print(f"E_{i+1} = {energies[i]:.6f}")
+
+
+"""Stage 2 Test: Quantum Harmonic Oscillator"""
+
+print("\nQuantum Harmonic Oscillator Test")
+
+x_min = -5.0
+x_max = 5.0
+N_ho = 300
+
+x_ho = np.linspace(x_min, x_max, N_ho)
+h_ho = x_ho[1] - x_ho[0]
+
+D2_ho = second_derivative_matrix(N_ho, h_ho)
+V_ho = harmonic_oscillator_potential(x_ho, m, omega)
+H_ho = harmonic_oscillator_hamiltonian(D2_ho, V_ho, hbar, m)
+
+energies_ho, wavefunctions_ho = solve_eigenstates(H_ho)
+wavefunctions_ho = normalize_wavefunction(wavefunctions_ho, h_ho)
+
+print("First 5 harmonic oscillator numerical energies:")
+for i in range(5):
+    print(f"E_{i} = {energies_ho[i]:.6f}")
