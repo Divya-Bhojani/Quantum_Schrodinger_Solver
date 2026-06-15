@@ -6,3 +6,7 @@ def infinite_square_well_energy(n, L, hbar, m):
 
 def relative_error(true_values, observed_values):
     return np.abs((true_values - observed_values) / true_values) * 100
+
+def infinite_square_well_wavefunction(n, x, L):
+    analytical_wavefunction = np.sqrt(2/L)*np.sin(n*np.pi*x/L)
+    return analytical_wavefunction

@@ -37,7 +37,7 @@ print(f"Normalization check for first wavefunction: {check_norm:.6f}")
 """Wavefunction vs x Plot"""
 
 x = np.linspace(h, L - h, N)
-plot_wavefunctions(x, wavefunctions, num_states = 5)
+plot_wavefunctions(x, wavefunctions, L, num_states = 5)
 
 """Energy Comparison"""
 

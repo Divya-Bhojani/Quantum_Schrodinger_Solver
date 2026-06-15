@@ -1,15 +1,26 @@
 import matplotlib.pyplot as plt
 import numpy as np
+from src.analytic import infinite_square_well_wavefunction
 
-def plot_wavefunctions(x: np.ndarray, wavefunctions: np.ndarray, num_states: int = 5) -> None:
+
+
+def plot_wavefunctions(x: np.ndarray, wavefunctions: np.ndarray, L, num_states: int = 5) -> None:
 
     plt.figure(figsize=(10, 6))
+
 
     for i in range(num_states):
         n = i + 1
 
+        num_psi = wavefunctions[i].copy()
+        ana_psi = infinite_square_well_wavefunction(n, x, L)
+
+        if np.dot(num_psi, ana_psi) < 0:
+            num_psi = -num_psi
+
         plt.subplot(2, 1, 1)
-        plt.plot(x, wavefunctions[i], label = f"n = {n}")
+        plt.plot(x, num_psi, label = f"Num. n = {n}")
+        plt.plot(x, ana_psi, "--", label = f"Ana. n = {n}")
 
         plt.subplot(2, 1, 2)
         plt.plot(x, wavefunctions[i]**2, label=f"n = {n}")
@@ -18,12 +29,12 @@ def plot_wavefunctions(x: np.ndarray, wavefunctions: np.ndarray, num_states: int
     plt.xlabel("x")
     plt.ylabel(r"$\psi_n(x)$")
     plt.title("Infinite Square Well: First Five Wavefunctions")
-    plt.legend()
+    plt.legend(fontsize='small', loc = 'lower left',borderpad=0.15, labelspacing=0.2, handletextpad=0.3, handlelength=1.5,)
     plt.grid(True)
 
     plt.subplot(2, 1, 2)
     plt.xlabel("x")
-    plt.ylabel(r"$|\psi_n(x)^2|$")
+    plt.ylabel(r"$|\psi_n(x)|^2$")
     plt.title("Probability Density")
     plt.legend()
     plt.grid(True)
