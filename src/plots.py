@@ -46,5 +46,43 @@ def plot_wavefunctions(x: np.ndarray, wavefunctions: np.ndarray, L: float, num_s
         plt.savefig(save_path, dpi = 300, bbox_inches='tight')
     plt.show()
 
+def plot_numerical_wavefunctions(x: np.ndarray, wavefunctions: np.ndarray, title: str, num_states: int = 5, save_path: str | None = None) -> None:
+    plt.figure(figsize=(10, 6))
+
+    for i in range(num_states):
+        n = i
+
+        psi = wavefunctions[i].copy()
+
+
+        if psi[np.argmax(np.abs(psi))] < 0:
+            psi = -psi
+
+        plt.subplot(2, 1, 1)
+        plt.plot(x, psi, label=f"n = {n}")
+
+        plt.subplot(2, 1, 2)
+        plt.plot(x, psi**2, label=f"n = {n}")
+
+    plt.subplot(2, 1, 1)
+    plt.xlabel("x")
+    plt.ylabel(r"$\psi_n(x)$")
+    plt.title(title)
+    plt.legend()
+    plt.grid(True)
+
+    plt.subplot(2, 1, 2)
+    plt.xlabel("x")
+    plt.ylabel(r"$|\psi_n(x)|^2$")
+    plt.title("Probability Density")
+    plt.legend()
+    plt.grid(True)
+
+    plt.tight_layout()
+
+    if save_path is not None:
+        plt.savefig(save_path, dpi=300, bbox_inches="tight")
+
+    plt.show()
 
 

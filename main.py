@@ -4,7 +4,7 @@ from src.hamiltonian import infinite_square_well_hamiltonian, harmonic_oscillato
 from src.operators import second_derivative_matrix
 from src.solver import solve_eigenstates, normalize_wavefunction
 from src.analytic import infinite_square_well_energy, harmonic_oscillator_energy, relative_error
-from src.plots import plot_wavefunctions
+from src.plots import plot_wavefunctions, plot_numerical_wavefunctions
 from src.potentials import harmonic_oscillator_potential
 
 """Inputs For the System"""
@@ -90,6 +90,14 @@ H_ho = harmonic_oscillator_hamiltonian(D2_ho, V_ho, hbar, m)
 
 energies_ho, wavefunctions_ho = solve_eigenstates(H_ho)
 wavefunctions_ho = normalize_wavefunction(wavefunctions_ho, h_ho)
+
+plot_numerical_wavefunctions(
+    x_ho,
+    wavefunctions_ho,
+    title="Quantum Harmonic Oscillator: First Five Numerical Wavefunctions",
+    num_states=5,
+    save_path="figures/harmonic_oscillator_wavefunctions.png"
+)
 
 print("First 5 harmonic oscillator numerical energies:")
 for i in range(5):
