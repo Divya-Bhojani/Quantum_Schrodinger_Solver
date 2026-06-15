@@ -3,7 +3,7 @@ import os
 from src.hamiltonian import infinite_square_well_hamiltonian, harmonic_oscillator_hamiltonian
 from src.operators import second_derivative_matrix
 from src.solver import solve_eigenstates, normalize_wavefunction
-from src.analytic import infinite_square_well_energy, relative_error
+from src.analytic import infinite_square_well_energy, harmonic_oscillator_energy, relative_error
 from src.plots import plot_wavefunctions
 from src.potentials import harmonic_oscillator_potential
 
@@ -44,9 +44,9 @@ x = np.linspace(h, L - h, N)
 os.makedirs("figures", exist_ok=True)
 plot_wavefunctions(x, wavefunctions, L, num_states = 5, save_path="figures/infinite_well_wavefunctions.png")
 
-"""Energy Comparison"""
+"""Infinite Square Well Energy Comparison"""
 
-print("Energy Comparison:")
+print("Infinite Square Well Energy Comparison:")
 for i in range(5):
     n = i + 1
 
@@ -94,3 +94,19 @@ wavefunctions_ho = normalize_wavefunction(wavefunctions_ho, h_ho)
 print("First 5 harmonic oscillator numerical energies:")
 for i in range(5):
     print(f"E_{i} = {energies_ho[i]:.6f}")
+
+"""Harmonic Oscillator Energy Comparison"""
+
+print("\n Harmonic Oscillator Energy Comparison:")
+for i in range(5):
+    n = i
+
+    numerical_energy = energies_ho[i]
+    analytical_energy = harmonic_oscillator_energy(n, hbar, omega)
+    error = relative_error(analytical_energy, numerical_energy)
+
+    print(f"n = {n}")
+    print(f"Numerical Energy = {numerical_energy:.6f}")
+    print(f"Analytical Energy = {analytical_energy:.6f}")
+    print(f"Relative Error = {error:.6f}%")
+    print()

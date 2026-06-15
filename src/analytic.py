@@ -10,3 +10,7 @@ def relative_error(true_values, observed_values):
 def infinite_square_well_wavefunction(n, x, L):
     analytical_wavefunction = np.sqrt(2/L)*np.sin(n*np.pi*x/L)
     return analytical_wavefunction
+
+def harmonic_oscillator_energy(n, hbar, omega):
+    analytical_oscillator = hbar * omega * (n + 1/2)
+    return analytical_oscillator
