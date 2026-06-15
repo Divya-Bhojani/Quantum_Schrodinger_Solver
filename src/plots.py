@@ -4,7 +4,8 @@ from src.analytic import infinite_square_well_wavefunction
 
 
 
-def plot_wavefunctions(x: np.ndarray, wavefunctions: np.ndarray, L, num_states: int = 5) -> None:
+def plot_wavefunctions(x: np.ndarray, wavefunctions: np.ndarray, L: float, num_states: int = 5,
+                       save_path: str | None = None) -> None:
 
     plt.figure(figsize=(10, 6))
 
@@ -40,6 +41,9 @@ def plot_wavefunctions(x: np.ndarray, wavefunctions: np.ndarray, L, num_states: 
     plt.grid(True)
 
     plt.tight_layout()
+
+    if save_path is not None:
+        plt.savefig(save_path, dpi = 300, bbox_inches='tight')
     plt.show()
 
 

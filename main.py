@@ -1,4 +1,5 @@
 import numpy as np
+import os
 from src.hamiltonian import infinite_square_well_hamiltonian
 from src.operators import second_derivative_matrix
 from src.solver import solve_eigenstates, normalize_wavefunction
@@ -37,7 +38,9 @@ print(f"Normalization check for first wavefunction: {check_norm:.6f}")
 """Wavefunction vs x Plot"""
 
 x = np.linspace(h, L - h, N)
-plot_wavefunctions(x, wavefunctions, L, num_states = 5)
+
+os.makedirs("figures", exist_ok=True)
+plot_wavefunctions(x, wavefunctions, L, num_states = 5, save_path="figures/infinite_well_wavefunctions.png")
 
 """Energy Comparison"""
 
